@@ -52,6 +52,8 @@ int main()
 
     while (!glfwWindowShouldClose(window))
     {
+        double initFrameTime = glfwGetTime();
+
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             break;
         }
@@ -76,6 +78,8 @@ int main()
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+        while (glfwGetTime() - initFrameTime < 1 / 75.0) {}
+
     }
 
     glfwDestroyWindow(window);
