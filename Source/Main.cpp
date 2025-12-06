@@ -6,6 +6,7 @@
 #include <algorithm> // za max()
 #include <iostream>
 #include "../Header/Util.h"
+#include "Main.h"
 
 // Main fajl funkcija sa osnovnim komponentama OpenGL programa
 
@@ -13,9 +14,11 @@
 // Toplo se preporučuje razdvajanje koda po fajlovima (i eventualno potfolderima) !!!
 // Srećan rad!
 GLFWcursor* remote;
-GLFWcursor* remoteUppPressed;
+GLFWcursor* remoteUpPressed;
 GLFWcursor* remoteDownPressed;
 GLFWcursor* remotePowerPressed;
+
+
 
 int main()
 {
@@ -29,13 +32,15 @@ int main()
     GLFWwindow* window = glfwCreateWindow(mode->width, mode->height, "AirConditioner", monitor, NULL);
     if (window == NULL) return endProgram("Failed to create the window.");
     glfwMakeContextCurrent(window);
-    glfwSetKeyCallback(window, squish_callback);
+    //glfwSetKeyCallback(window, squish_callback);
     glfwSetMouseButtonCallback(window, center_callback);
 
     remote = loadImageToCursor("Resources/remote.png");
-    remote = loadImageToCursor("Resources/remote.png");
-    remote = loadImageToCursor("Resources/remote.png");
-    remote = loadImageToCursor("Resources/remote.png");
+    remoteDownPressed = loadImageToCursor("Resources/remote_down_pressed.png");
+    remoteUpPressed = loadImageToCursor("Resources/remote_up_pressed.png");
+    remotePowerPressed = loadImageToCursor("Resources/remote_power_pressed.png");
+    glfwSetCursor(window, remote);
+
     if (glewInit() != GLEW_OK) return endProgram("GLEW nije uspeo da se inicijalizuje.");
 
     glEnable(GL_BLEND);
@@ -45,6 +50,10 @@ int main()
 
     while (!glfwWindowShouldClose(window))
     {
+        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+            break;
+        }
+
         glClear(GL_COLOR_BUFFER_BIT);
 
         glfwSwapBuffers(window);

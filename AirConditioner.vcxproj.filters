@@ -21,6 +21,9 @@
     <ClCompile Include="Source\Util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Callbacks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\stb_image.h">
@@ -29,21 +32,24 @@
     <ClInclude Include="Header\Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Callbacks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\..\..\Downloads\remote_power_pressed.png.png">
+    <Image Include="Resources\remote.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\..\..\..\..\..\..\Downloads\remote_upp_pressed.png.png">
+    <Image Include="Resources\remote_down_pressed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\..\..\..\..\..\..\Downloads\remote.png.png">
+    <Image Include="Resources\remote_power_pressed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\..\..\..\..\..\..\Downloads\remote_down_pressed.png.png">
+    <Image Include="Resources\remote_up_pressed.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
