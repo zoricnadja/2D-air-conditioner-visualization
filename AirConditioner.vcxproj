@@ -125,23 +125,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\DrawRectangle\Rectangle.cpp" />
-    <ClCompile Include="Source\DrawRectangle\Background.cpp" />
+    <ClCompile Include="Source\Circle\Lamp.cpp" />
+    <ClCompile Include="Source\Rectangle\Rectangle.cpp" />
+    <ClCompile Include="Source\Rectangle\Background.cpp" />
     <ClCompile Include="Source\Callbacks.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header\DrawRectangle\Background.h" />
+    <ClInclude Include="Header\Circle\Lamp.h" />
+    <ClInclude Include="Header\Rectangle\Background.h" />
     <ClInclude Include="Header\Callbacks.h" />
     <ClInclude Include="Header\stb_image.h" />
     <ClInclude Include="Header\Util.h" />
-    <ClInclude Include="Header\DrawRectangle\Rectangle.h" />
+    <ClInclude Include="Header\Rectangle\Rectangle.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\circle.frag" />
+    <None Include="Shaders\circle.vert" />
+    <None Include="Shaders\rect.frag" />
+    <None Include="Shaders\rect.vert" />
     <None Include="packages.config" />
-    <None Include="Source\rect.frag" />
-    <None Include="Source\rect.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\air_conditioner.png" />

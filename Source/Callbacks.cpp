@@ -3,16 +3,24 @@
 #include <GLFW/glfw3.h>
 #include "../Header/Util.h"
 
-
 void center_callback(GLFWwindow* window, int button, int action, int mods)
 {
+	double xpos, ypos;
+	glfwGetCursorPos(window, &xpos, &ypos);
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+	
+	bool inside = true;
+	 
+	float nx = (float)(xpos / width) * 2.0f - 1.0f;
+	float ny = 1.0f - (float)(ypos / height) * 2.0f;
+	if (nx < xc - r*3 || nx > xc + r*3 || ny < yc - r*3 || ny > yc + r*3) {
+		inside = false;
+	}
+
 	if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
-		double xpos, ypos;
-		glfwGetCursorPos(window, &xpos, &ypos);
-		int width, height;
-		glfwGetWindowSize(window, &width, &height);
-		
 		glfwSetCursor(window, remotePowerPressed);
+		uLampPower = (uLampPower < 1.0f) && inside ? 1.0f : 0.0f;
 	} 
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
 		glfwSetCursor(window, remote);
