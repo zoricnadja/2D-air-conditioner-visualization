@@ -6,7 +6,7 @@
 #include <algorithm> // za max()
 #include <iostream>
 #include "../Header/Util.h"
-#include "Main.h"
+#include "../Header/Callbacks.h"
 
 // Main fajl funkcija sa osnovnim komponentama OpenGL programa
 
@@ -18,7 +18,8 @@ GLFWcursor* remoteUpPressed;
 GLFWcursor* remoteDownPressed;
 GLFWcursor* remotePowerPressed;
 
-
+bool upPressed = false;
+bool downPressed = false;
 
 int main()
 {
@@ -39,6 +40,7 @@ int main()
     remoteDownPressed = loadImageToCursor("Resources/remote_down_pressed.png");
     remoteUpPressed = loadImageToCursor("Resources/remote_up_pressed.png");
     remotePowerPressed = loadImageToCursor("Resources/remote_power_pressed.png");
+    
     glfwSetCursor(window, remote);
 
     if (glewInit() != GLEW_OK) return endProgram("GLEW nije uspeo da se inicijalizuje.");
@@ -52,6 +54,22 @@ int main()
     {
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             break;
+        }
+		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS and !upPressed) {
+            glfwSetCursor(window, remoteUpPressed);
+			upPressed = true;
+        } 
+        if(glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS and !downPressed) {
+            glfwSetCursor(window, remoteDownPressed);
+			downPressed = true;
+        }
+		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE and upPressed) {
+            glfwSetCursor(window, remote);
+			upPressed = false;
+        } 
+        if(glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_RELEASE and downPressed) {
+			downPressed = false;
+            glfwSetCursor(window, remote);
         }
 
         glClear(GL_COLOR_BUFFER_BIT);

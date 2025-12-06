@@ -125,12 +125,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Callbacks.cpp" />
+    <ClCompile Include="Source\Callbacks.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Callbacks.h" />
+    <ClInclude Include="Header\Callbacks.h" />
     <ClInclude Include="Header\stb_image.h" />
     <ClInclude Include="Header\Util.h" />
   </ItemGroup>

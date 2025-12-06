@@ -21,7 +21,7 @@
     <ClCompile Include="Source\Util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Callbacks.cpp">
+    <ClCompile Include="Source\Callbacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,7 +32,7 @@
     <ClInclude Include="Header\Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Callbacks.h">
+    <ClInclude Include="Header\Callbacks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
