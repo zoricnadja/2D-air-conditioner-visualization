@@ -125,19 +125,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Drawings\Background.cpp" />
     <ClCompile Include="Source\Callbacks.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Drawings\Background.h" />
     <ClInclude Include="Header\Callbacks.h" />
     <ClInclude Include="Header\stb_image.h" />
     <ClInclude Include="Header\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="rect.frag" />
+    <None Include="rect.vert" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\background.png" />
     <Image Include="Resources\remote.png" />
     <Image Include="Resources\remote_down_pressed.png" />
     <Image Include="Resources\remote_power_pressed.png" />

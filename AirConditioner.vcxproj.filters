@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Drawings">
+      <UniqueIdentifier>{88251359-fb63-4fff-9cb8-460ef65a1bcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Drawings">
+      <UniqueIdentifier>{c54bb9aa-7b1b-4b0d-a87c-7646987a9319}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -23,6 +29,9 @@
     </ClCompile>
     <ClCompile Include="Source\Callbacks.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Drawings\Background.cpp">
+      <Filter>Source Files\Drawings</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -35,9 +44,14 @@
     <ClInclude Include="Header\Callbacks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Drawings\Background.h">
+      <Filter>Header Files\Drawings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="rect.frag" />
+    <None Include="rect.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\remote.png">
@@ -50,6 +64,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\remote_up_pressed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\background.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

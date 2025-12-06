@@ -7,6 +7,7 @@
 #include <iostream>
 #include "../Header/Util.h"
 #include "../Header/Callbacks.h"
+#include "../Header/Drawings/Background.h"
 
 // Main fajl funkcija sa osnovnim komponentama OpenGL programa
 
@@ -48,7 +49,11 @@ int main()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glClearColor(0.2f, 0.8f, 0.6f, 1.0f);
+	initBackground(mode->width, mode->height);
+    unsigned int rectShader = createShader("rect.vert", "rect.frag");
+    glUseProgram(rectShader);
+    glUniform1i(glGetUniformLocation(rectShader, "uTex"), 0);
+    glClearColor(0.5f, 0.6f, 1.0f, 1.0f);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -76,12 +81,16 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT);
 
+        drawBackground(rectShader);
+
         glfwSwapBuffers(window);
         glfwPollEvents();
         while (glfwGetTime() - initFrameTime < 1 / 75.0) {}
 
     }
 
+	deleteBackground();
+	glDeleteProgram(rectShader);
     glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
