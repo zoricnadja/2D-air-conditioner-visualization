@@ -7,7 +7,7 @@
 #include <iostream>
 #include "../Header/Util.h"
 #include "../Header/Callbacks.h"
-#include "../Header/Drawings/Background.h"
+#include "../Header/DrawRectangle/Rectangle.h"
 
 // Main fajl funkcija sa osnovnim komponentama OpenGL programa
 
@@ -48,9 +48,25 @@ int main()
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	initBackground(mode->width, mode->height);
-    unsigned int rectShader = createShader("rect.vert", "rect.frag");
+    float bgVertices[] = {
+       -1.0f,  1.0f, 0.0f, 1.0f,
+       -1.0f, -1.0f, 0.0f, 0.0f,
+        1.0f, -1.0f, 1.0f, 0.0f,
+        1.0f,  1.0f, 1.0f, 1.0f
+    };
+    float acVertices[] = {
+       -1.0f,  1.1f, 0.0f, 1.0f,
+       -1.0f,  0.25f, 0.0f, 0.0f,
+       -0.45f,  0.25f, 1.0f, 0.0f,
+       -0.45f,  1.1f, 1.0f, 1.0f
+    };
+	unsigned int bgVAO, bgVBO;
+	unsigned int acVAO, acVBO;
+	initRectangles(mode->width, mode->height, bgVertices,sizeof(bgVertices), bgVAO, bgVBO);
+	initRectangles(mode->width, mode->height, acVertices, sizeof(acVertices), acVAO, acVBO);
+    unsigned int bgTexture = loadTexture("Resources/background.png");
+    unsigned int acTexture = loadTexture("Resources/air_conditioner.png");
+    unsigned int rectShader = createShader("Source/rect.vert", "Source/rect.frag");
     glUseProgram(rectShader);
     glUniform1i(glGetUniformLocation(rectShader, "uTex"), 0);
     glClearColor(0.5f, 0.6f, 1.0f, 1.0f);
@@ -80,8 +96,9 @@ int main()
         }
 
         glClear(GL_COLOR_BUFFER_BIT);
-
-        drawBackground(rectShader);
+        glUseProgram(rectShader);
+        drawRectangles(rectShader, bgTexture, bgVAO);
+        drawRectangles(rectShader, acTexture, acVAO);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -89,7 +106,8 @@ int main()
 
     }
 
-	deleteBackground();
+	deleteRectangles(bgVAO, bgVBO, bgTexture);
+    deleteRectangles(acVAO, acVBO, acTexture);
 	glDeleteProgram(rectShader);
     glfwDestroyWindow(window);
     glfwTerminate();
