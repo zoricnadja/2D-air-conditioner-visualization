@@ -1,7 +1,9 @@
 #pragma once
-#include <GL/glew.h>
 
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
+#include "Renderer.h"
 
 class Application
 {
@@ -20,4 +22,7 @@ public:
 
 private:
     GLFWwindow* window_;
+
+    // renderer instance used by the application
+    Renderer renderer_;
 };
