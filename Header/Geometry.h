@@ -1,4 +1,5 @@
 #pragma once
+constexpr int NUM_OF_SLICES = (50 + 2) * 2;
 
 extern float bgVertices[16];
 extern float acVertices[16];
@@ -18,6 +19,7 @@ extern float screen2celsiusVertices[16];
 
 extern float screen3Vertices[16];
 
-extern float lampVertices[102];
+extern float lampVertices[NUM_OF_SLICES];
 
-void initLampVertices(int numSlices, float xc, float yc, float r);
+
+void initLampVertices(float xc, float yc, float r);

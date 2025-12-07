@@ -4,6 +4,8 @@
 
 #include "../../Header/Util.h"
 
+const int NUM_SLICES = 50;
+
 void initCircle(float* vertices, size_t size, unsigned int& vao, unsigned int& vbo)
 {
 	glGenVertexArrays(1, &vao);

@@ -11,7 +11,6 @@
 #include "../Header/Rectangle/Rectangle.h"
 #include "../Header/Circle/Lamp.h"
 
-const int NUM_SLICES = 50;
 const int NUM_OF_DIGITS = 10 + 1;
 const int NUM_OF_SYMBOLS = 3;
 
@@ -131,12 +130,12 @@ int main()
 	unsigned int screen2num2VAO, screen2num2VBO;
 	unsigned int screen2degreeVAO, screen2degreeVBO;
 	unsigned int screen2celsiusVAO, screen2celsiusVBO;
-	unsigned int screen3num1VAO, screen3num1VBO;
-	unsigned int screen3num2VAO, screen3num2VBO;
-	unsigned int screen3degreeVAO, screen3degreeVBO;
-	unsigned int screen3celsiusVAO, screen3celsiusVBO;
 	unsigned int lampVAO, lampVBO;
-	initLampVertices(NUM_SLICES, xc, yc, r);
+	initLampVertices(xc, yc, r);
+	printf("Lamp initialized at (%.3f, %.3f) with radius %.4f\n", xc, yc, r);
+	printf("Initializing lamp ...%f\n", lampVertices[0]);
+	printf("Initializing vertices ...%f\n", screen1celsiusVertices[1]);
+    
 	initRectangles(mode->width, mode->height, bgVertices,sizeof(bgVertices), bgVAO, bgVBO);
 	initRectangles(mode->width, mode->height, acVertices, sizeof(acVertices), acVAO, acVBO);
 	initRectangles(mode->width, mode->height, flapVertices, sizeof(flapVertices), flapVAO, flapVBO);

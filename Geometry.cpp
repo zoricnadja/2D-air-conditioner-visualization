@@ -1,5 +1,6 @@
 ﻿#define _USE_MATH_DEFINES
 #include <cmath> 
+#include "../../Header/Geometry.h"
 
 float bgVertices[] = {
    -1.0f,  1.0f, 0.0f, 1.0f,
@@ -100,15 +101,15 @@ float screen3Vertices[] = {
 };
 
 
-    float lampVertices[102];
-void initLampVertices(int numSlices, float xc, float yc, float r)
+float lampVertices[NUM_OF_SLICES];
+void initLampVertices(float xc, float yc, float r)
 {
 
     lampVertices[0] = xc;
     lampVertices[1] = yc;
 
-    for (int i = 0; i <= numSlices; ++i) {
-        float angle = i * 2.0f * M_PI / numSlices;
+    for (int i = 1; i < (NUM_OF_SLICES / 2); ++i) {
+        float angle = i * 2.0f * M_PI / (NUM_OF_SLICES / 2 - 2);
         lampVertices[i * 2] = cos(angle) * r + xc;
         lampVertices[i * 2 + 1] = sin(angle) * r + yc;
     }
