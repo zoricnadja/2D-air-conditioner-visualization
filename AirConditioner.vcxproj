@@ -170,6 +170,7 @@
     <Image Include="Resources\flake.png" />
     <Image Include="Resources\flap.jpeg" />
     <Image Include="Resources\light_grey.jpg" />
+    <Image Include="Resources\minus.png" />
     <Image Include="Resources\remote.png" />
     <Image Include="Resources\remote_down_pressed.png" />
     <Image Include="Resources\remote_power_pressed.png" />

@@ -160,6 +160,9 @@
     <Image Include="Resources\done.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\minus.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AirConditioner.rc">

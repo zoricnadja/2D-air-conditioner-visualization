@@ -11,7 +11,7 @@
 #include "../Header/Circle/Lamp.h"
 
 const int NUM_SLICES = 50;
-const int NUM_OF_DIGITS = 10;
+const int NUM_OF_DIGITS = 10 + 1;
 const int NUM_OF_SYMBOLS = 3;
 
 GLFWcursor* remote;
@@ -24,10 +24,12 @@ bool downPressed = false;
 float xc = -0.53f, yc = 0.59f, r = 0.0045f;
 float uLampPower = 0.0f;
 bool isFlapMoving = false;
-int currentDigit1Screen1 = 2;
+//wanted temp
+int currentDigit1Screen1 = 3;
 int currentDigit2Screen1 = 4;
-int currentDigit1Screen2 = 3;
-int currentDigit2Screen2 = 0;
+//current temp
+int currentDigit1Screen2 = 4;
+int currentDigit2Screen2 = 1;
 int currentSymbol = 0;
 
 int main()
@@ -205,16 +207,17 @@ int main()
 	unsigned int lightGreyTexture = loadTexture("Resources/light_grey.jpg");
 	unsigned int darkGreyTexture = loadTexture("Resources/dark_grey.png");
     unsigned int numberTextures[NUM_OF_DIGITS];
-	numberTextures[0] = loadTexture("Resources/0.png");
-	numberTextures[1] = loadTexture("Resources/1.png");
-	numberTextures[2] = loadTexture("Resources/2.png");
-	numberTextures[3] = loadTexture("Resources/3.png");
-	numberTextures[4] = loadTexture("Resources/4.png");
-	numberTextures[5] = loadTexture("Resources/5.png");
-	numberTextures[6] = loadTexture("Resources/6.png");
-	numberTextures[7] = loadTexture("Resources/7.png");
-	numberTextures[8] = loadTexture("Resources/8.png");
-	numberTextures[9] = loadTexture("Resources/9.png");
+	numberTextures[0] = loadTexture("Resources/minus.png");
+	numberTextures[1] = loadTexture("Resources/0.png");
+	numberTextures[2] = loadTexture("Resources/1.png");
+	numberTextures[3] = loadTexture("Resources/2.png");
+	numberTextures[4] = loadTexture("Resources/3.png");
+	numberTextures[5] = loadTexture("Resources/4.png");
+	numberTextures[6] = loadTexture("Resources/5.png");
+	numberTextures[7] = loadTexture("Resources/6.png");
+	numberTextures[8] = loadTexture("Resources/7.png");
+	numberTextures[9] = loadTexture("Resources/8.png");
+	numberTextures[10] = loadTexture("Resources/9.png");
     unsigned int symbolTextures[NUM_OF_SYMBOLS];
 	symbolTextures[0] = loadTexture("Resources/flake.png");
 	symbolTextures[1] = loadTexture("Resources/done.png");
@@ -244,10 +247,50 @@ int main()
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS and !upPressed) {
             glfwSetCursor(window, remoteUpPressed);
             upPressed = true;
+            if (uLampPower == 1.0f) {
+                if (currentDigit1Screen1 != 4 || currentDigit2Screen1 != 10) {
+                    if (currentDigit1Screen1 < 1) {
+                        currentDigit2Screen1--;
+                        if (currentDigit2Screen1 == 1) {
+                            currentDigit2Screen1 = 1;
+                            currentDigit1Screen1 = 1;
+                        }
+                    } 
+                    else {
+                        currentDigit2Screen1++;
+                        if (currentDigit2Screen1 == 11) {
+                            currentDigit2Screen1 = 1;
+                            currentDigit1Screen1++;
+                        }
+                    }
+                }
+            }
         }
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS and !downPressed) {
             glfwSetCursor(window, remoteDownPressed);
             downPressed = true;
+            
+            if (uLampPower == 1.0f) {
+                if (currentDigit1Screen1 != 0 || currentDigit2Screen1 != 10) {
+                    if (currentDigit1Screen1 < 1) {
+                        currentDigit2Screen1++;
+                        if (currentDigit2Screen1 == 11) {
+                            currentDigit2Screen1 = 10;
+                            currentDigit1Screen1 = 0;
+                        }
+					}
+                    else {
+                        currentDigit2Screen1--;
+                        if (currentDigit2Screen1 == 0) {
+                            currentDigit1Screen1--;
+							if (currentDigit1Screen1 > 0)
+                                currentDigit2Screen1 = 10;
+                            else
+								currentDigit2Screen1 = 2;
+                        }
+                    }
+                }
+			}
         }
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE and upPressed) {
             glfwSetCursor(window, remote);
