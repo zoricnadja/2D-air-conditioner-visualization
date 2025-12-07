@@ -126,6 +126,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Circle\Lamp.cpp" />
     <ClCompile Include="Source\Rectangle\Rectangle.cpp" />
     <ClCompile Include="Source\Rectangle\Background.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Source\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Application.h" />
     <ClInclude Include="Header\Geometry.h" />
     <ClInclude Include="Header\Circle\Lamp.h" />
     <ClInclude Include="Header\Rectangle\Background.h" />
