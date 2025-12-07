@@ -4,6 +4,8 @@
 
 #include "../../Header/Util.h"
 
+float fill = 0.0f;
+bool useFill = false;
 
 void initRectangles(int width, int height, float* vertices, size_t size, unsigned int& vao, unsigned int& vbo)
 {
@@ -31,6 +33,9 @@ unsigned int loadTexture(const char* path) {
 
 void drawRectangles(unsigned int shader, unsigned int texture, unsigned int& vao) {
 	glUseProgram(shader);
+
+	glUniform1f(glGetUniformLocation(shader, "uFill"), fill);
+	glUniform1f(glGetUniformLocation(shader, "uUseFill"), useFill);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);

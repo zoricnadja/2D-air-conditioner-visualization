@@ -7,6 +7,7 @@ void center_callback(GLFWwindow* window, int button, int action, int mods)
 {
 	double xpos, ypos;
 	glfwGetCursorPos(window, &xpos, &ypos);
+
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
 	
@@ -20,7 +21,11 @@ void center_callback(GLFWwindow* window, int button, int action, int mods)
 
 	if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
 		glfwSetCursor(window, remotePowerPressed);
-		uLampPower = (uLampPower < 1.0f) && inside ? 1.0f : 0.0f;
+		if (inside) {
+			uLampPower = (uLampPower < 1.0f) ? 1.0f : 0.0f;
+			useFill = true;
+			isFlapMoving = true;
+		}
 	} 
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
 		glfwSetCursor(window, remote);

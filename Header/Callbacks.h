@@ -3,7 +3,11 @@
 #include <GLFW/glfw3.h>
 extern GLFWcursor* remote;
 extern GLFWcursor* remotePowerPressed;
-extern float uLampPower;
 extern float xc, yc, r;
+extern bool isFlapMoving;
+extern float uLampPower;
+extern float fill;
+extern bool useFill;
+
 
 void center_callback(GLFWwindow* window, int button, int action, int mods);

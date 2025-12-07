@@ -100,5 +100,11 @@
     <Image Include="Resources\air_conditioner.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\flap.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\air_vent_grill.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -24,8 +24,9 @@ GLFWcursor* remotePowerPressed;
 
 bool upPressed = false;
 bool downPressed = false;
+float xc = -0.53f, yc = 0.59f, r = 0.0045f;
 float uLampPower = 0.0f;
-float xc, yc, r;
+bool isFlapMoving = false;
 
 int main()
 {
@@ -53,12 +54,14 @@ int main()
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     float bgVertices[] = {
        -1.0f,  1.0f, 0.0f, 1.0f,
        -1.0f, -1.0f, 0.0f, 0.0f,
         1.0f, -1.0f, 1.0f, 0.0f,
         1.0f,  1.0f, 1.0f, 1.0f
     };
+
     float acVertices[] = {
        -1.0f,  1.1f, 0.0f, 1.0f,
        -1.0f,  0.25f, 0.0f, 0.0f,
@@ -66,9 +69,15 @@ int main()
        -0.45f,  1.1f, 1.0f, 1.0f
     };
 
+    float flapVertices[] = {
+       -0.915f,  0.62f, 0.0f, 1.0f,
+       -0.91f,  0.585f, 0.0f, 0.0f,
+       -0.54f,  0.585f, 1.0f, 0.0f,
+       -0.535f,  0.62f, 1.0f, 1.0f
+    };
+
     float lampVertices[(NUM_SLICES + 2) * 2];
 
-    xc = -0.53f, yc = 0.59f, r = 0.0045f;
     lampVertices[0] = xc;
     lampVertices[1] = yc;
     for (int i = 1; i < NUM_SLICES + 2; ++i) {
@@ -78,12 +87,15 @@ int main()
     }
 	unsigned int bgVAO, bgVBO;
 	unsigned int acVAO, acVBO;
+	unsigned int flapVAO, flapVBO;
 	unsigned int lampVAO, lampVBO;
 	initRectangles(mode->width, mode->height, bgVertices,sizeof(bgVertices), bgVAO, bgVBO);
 	initRectangles(mode->width, mode->height, acVertices, sizeof(acVertices), acVAO, acVBO);
+	initRectangles(mode->width, mode->height, flapVertices, sizeof(flapVertices), flapVAO, flapVBO);
 	initCircle(lampVertices, sizeof(lampVertices), lampVAO, lampVBO);
     unsigned int bgTexture = loadTexture("Resources/background.png");
     unsigned int acTexture = loadTexture("Resources/air_conditioner.png");
+	unsigned int flapTexture = loadTexture("Resources/air_vent_grill.png");
     unsigned int rectShader = createShader("Shaders/rect.vert", "Shaders/rect.frag");
 	unsigned int circleShader = createShader("Shaders/circle.vert", "Shaders/circle.frag");
     glUseProgram(rectShader);
@@ -94,6 +106,12 @@ int main()
     {
         double initFrameTime = glfwGetTime();
 
+        if (isFlapMoving) {
+			if (fill == 0.0f && !uLampPower || fill == 1.0f && uLampPower) 
+                isFlapMoving = false;
+            else
+                fill += (uLampPower == 1.0f) ? 0.01f : -0.01f;
+        }
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             break;
         }
@@ -116,8 +134,11 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT);
         glUseProgram(rectShader);
+		useFill = false;
         drawRectangles(rectShader, bgTexture, bgVAO);
         drawRectangles(rectShader, acTexture, acVAO);
+		useFill = true;
+        drawRectangles(rectShader, flapTexture, flapVAO);
 		drawCircle(circleShader, lampVAO);
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -127,6 +148,7 @@ int main()
 
 	deleteRectangles(bgVAO, bgVBO, bgTexture);
     deleteRectangles(acVAO, acVBO, acTexture);
+    deleteRectangles(flapVAO, flapVBO, flapTexture);
 	deleteCircle(lampVAO, lampVBO);
 	glDeleteProgram(rectShader);
     glfwDestroyWindow(window);

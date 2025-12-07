@@ -149,7 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\air_conditioner.png" />
+    <Image Include="Resources\air_vent_grill.png" />
     <Image Include="Resources\background.png" />
+    <Image Include="Resources\flap.jpeg" />
     <Image Include="Resources\remote.png" />
     <Image Include="Resources\remote_down_pressed.png" />
     <Image Include="Resources\remote_power_pressed.png" />
