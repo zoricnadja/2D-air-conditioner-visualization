@@ -65,6 +65,9 @@
     <ClInclude Include="Header\Circle\Lamp.h">
       <Filter>Header Files\Circle</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -106,5 +109,61 @@
     <Image Include="Resources\air_vent_grill.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\9.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\8.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\7.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\celsius.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\degree.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\dark_grey.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\light_grey.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\fire.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\flake.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\done.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AirConditioner.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
