@@ -5,6 +5,7 @@
 #include <cmath> 
 #include <algorithm> 
 #include <iostream>
+#include "../Header/Geometry.h"
 #include "../Header/Util.h"
 #include "../Header/Callbacks.h"
 #include "../Header/Rectangle/Rectangle.h"
@@ -32,6 +33,63 @@ int currentDigit1Screen2 = 4;
 int currentDigit2Screen2 = 1;
 int currentSymbol = 0;
 
+void check_symbol() {
+    int wanted_temp = currentDigit1Screen1 * 10 + currentDigit2Screen1;
+    int current_temp = currentDigit1Screen2 * 10 + currentDigit2Screen2;
+    if(wanted_temp < current_temp){
+        currentSymbol = 0; 
+    }
+    else if(wanted_temp > current_temp){
+        currentSymbol = 2; 
+    }
+    else{
+        currentSymbol = 1;
+    }
+}
+void increase_temperature() {
+    if (uLampPower == 1.0f) {
+        if (currentDigit1Screen1 != 4 || currentDigit2Screen1 != 10) {
+            if (currentDigit1Screen1 < 1) {
+                currentDigit2Screen1--;
+                if (currentDigit2Screen1 == 1) {
+                    currentDigit2Screen1 = 1;
+                    currentDigit1Screen1 = 1;
+                }
+            }
+            else {
+                currentDigit2Screen1++;
+                if (currentDigit2Screen1 == 11) {
+                    currentDigit2Screen1 = 1;
+                    currentDigit1Screen1++;
+                }
+            }
+        }
+    }
+}
+void lower_temperature() {
+    if (uLampPower == 1.0f) {
+        if (currentDigit1Screen1 != 0 || currentDigit2Screen1 != 10) {
+            if (currentDigit1Screen1 < 1) {
+                currentDigit2Screen1++;
+                if (currentDigit2Screen1 == 11) {
+                    currentDigit2Screen1 = 10;
+                    currentDigit1Screen1 = 0;
+                }
+            }
+            else {
+                currentDigit2Screen1--;
+                if (currentDigit2Screen1 == 0) {
+                    currentDigit1Screen1--;
+                    if (currentDigit1Screen1 > 0)
+                        currentDigit2Screen1 = 10;
+                    else
+                        currentDigit2Screen1 = 2;
+                }
+            }
+        }
+    }
+}
+
 int main()
 {
     glfwInit();
@@ -58,114 +116,7 @@ int main()
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    float bgVertices[] = {
-       -1.0f,  1.0f, 0.0f, 1.0f,
-       -1.0f, -1.0f, 0.0f, 0.0f,
-        1.0f, -1.0f, 1.0f, 0.0f,
-        1.0f,  1.0f, 1.0f, 1.0f
-    };
-
-    float acVertices[] = {
-       -1.0f,  1.1f, 0.0f, 1.0f,
-       -1.0f,  0.25f, 0.0f, 0.0f,
-       -0.45f, 0.25f, 1.0f, 0.0f,
-       -0.45f, 1.1f, 1.0f, 1.0f
-    };
-
-    float flapVertices[] = {
-       -0.915f, 0.62f, 0.0f, 1.0f,
-       -0.91f,  0.585f, 0.0f, 0.0f,
-       -0.54f,  0.585f, 1.0f, 0.0f,
-       -0.535f, 0.62f, 1.0f, 1.0f
-    };
-
-    float screen1Vertices[] = {
-       -0.91f,  0.72f, 0.0f, 1.0f,
-       -0.91f,  0.685f, 0.0f, 0.0f,
-       -0.85f,  0.685f, 1.0f, 0.0f,
-       -0.85f,  0.72f, 1.0f, 1.0f
-    };
-
-    float screen1num1Vertices[] = {
-       -0.91f,  0.72f, 0.0f, 1.0f,
-       -0.91f,  0.685f, 0.0f, 0.0f,
-       -0.895f,  0.685f, 1.0f, 0.0f,
-       -0.895f,  0.72f, 1.0f, 1.0f
-    };
-
-    float screen1num2Vertices[] = {
-       -0.895f,  0.72f, 0.0f, 1.0f,
-       -0.895f,  0.685f, 0.0f, 0.0f,
-       -0.88f,  0.685f, 1.0f, 0.0f,
-       -0.88f,  0.72f, 1.0f, 1.0f
-    };
-
-    float screen1degreeVertices[] = {
-       -0.88f, 0.72f, 0.0f, 1.0f,
-       -0.88f, 0.685f, 0.0f, 0.0f,
-       -0.865f, 0.685f, 1.0f, 0.0f,
-       -0.865f, 0.72f, 1.0f, 1.0f
-    };
-
-    float screen1celsiusVertices[] = {
-       -0.865f,  0.72f, 0.0f, 1.0f,
-       -0.865f,  0.685f, 0.0f, 0.0f,
-       -0.85f,  0.685f, 1.0f, 0.0f,
-       -0.85f,  0.72f, 1.0f, 1.0f
-    };
-
-    float screen2Vertices[] = {
-       -0.59f,  0.72f, 0.0f, 1.0f,
-       -0.59f,  0.685f, 0.0f, 0.0f,
-       -0.53f,  0.685f, 1.0f, 0.0f,
-       -0.53f,  0.72f, 1.0f, 1.0f
-    };
     
-    float screen2num1Vertices[] = {
-       -0.59f,  0.72f, 0.0f, 1.0f,
-       -0.59f,  0.685f, 0.0f, 0.0f,
-       -0.575f,  0.685f, 1.0f, 0.0f,
-       -0.575f,  0.72f, 1.0f, 1.0f
-    };
-
-    float screen2num2Vertices[] = {
-       -0.575f,  0.72f, 0.0f, 1.0f,
-       -0.575f,  0.685f, 0.0f, 0.0f,
-       -0.56f,  0.685f, 1.0f, 0.0f,
-       -0.56f,  0.72f, 1.0f, 1.0f
-	};
-
-    float screen2degreeVertices[] = {
-       -0.56f, 0.72f, 0.0f, 1.0f,
-       -0.56f, 0.685f, 0.0f, 0.0f,
-       -0.545f, 0.685f, 1.0f, 0.0f,
-       -0.545f, 0.72f, 1.0f, 1.0f
-	};
-
-    float screen2celsiusVertices[] = {
-       -0.545f,  0.72f, 0.0f, 1.0f,
-       -0.545f,  0.685f, 0.0f, 0.0f,
-       -0.53f,  0.685f, 1.0f, 0.0f,
-       -0.53f,  0.72f, 1.0f, 1.0f
-	};
-
-    float screen3Vertices[] = {
-       -0.64f,  0.72f, 0.0f, 1.0f,
-       -0.64f,  0.685f, 0.0f, 0.0f,
-       -0.605f,  0.685f, 1.0f, 0.0f,
-       -0.605f,  0.72f, 1.0f, 1.0f
-    };
-
-    float lampVertices[(NUM_SLICES + 2) * 2];
-
-    lampVertices[0] = xc;
-    lampVertices[1] = yc;
-    for (int i = 1; i < NUM_SLICES + 2; ++i) {
-        float angle = i * 2 * M_PI / NUM_SLICES;
-        lampVertices[i * 2] = cos(angle) * r + xc;
-        lampVertices[i * 2 + 1] = sin(angle) * r + yc;
-    }
 	unsigned int bgVAO, bgVBO;
 	unsigned int acVAO, acVBO;
 	unsigned int flapVAO, flapVBO;
@@ -185,6 +136,7 @@ int main()
 	unsigned int screen3degreeVAO, screen3degreeVBO;
 	unsigned int screen3celsiusVAO, screen3celsiusVBO;
 	unsigned int lampVAO, lampVBO;
+	initLampVertices(NUM_SLICES, xc, yc, r);
 	initRectangles(mode->width, mode->height, bgVertices,sizeof(bgVertices), bgVAO, bgVBO);
 	initRectangles(mode->width, mode->height, acVertices, sizeof(acVertices), acVAO, acVBO);
 	initRectangles(mode->width, mode->height, flapVertices, sizeof(flapVertices), flapVAO, flapVBO);
@@ -247,63 +199,15 @@ int main()
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS and !upPressed) {
             glfwSetCursor(window, remoteUpPressed);
             upPressed = true;
-            if (uLampPower == 1.0f) {
-                if (currentDigit1Screen1 != 4 || currentDigit2Screen1 != 10) {
-                    if (currentDigit1Screen1 < 1) {
-                        currentDigit2Screen1--;
-                        if (currentDigit2Screen1 == 1) {
-                            currentDigit2Screen1 = 1;
-                            currentDigit1Screen1 = 1;
-                        }
-                    }
-                    else {
-                        currentDigit2Screen1++;
-                        if (currentDigit2Screen1 == 11) {
-                            currentDigit2Screen1 = 1;
-                            currentDigit1Screen1++;
-                        }
-                    }
-                }
-            }
+			increase_temperature();
         }
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS and !downPressed) {
             glfwSetCursor(window, remoteDownPressed);
             downPressed = true;
+            lower_temperature();
+        }
 
-            if (uLampPower == 1.0f) {
-                if (currentDigit1Screen1 != 0 || currentDigit2Screen1 != 10) {
-                    if (currentDigit1Screen1 < 1) {
-                        currentDigit2Screen1++;
-                        if (currentDigit2Screen1 == 11) {
-                            currentDigit2Screen1 = 10;
-                            currentDigit1Screen1 = 0;
-                        }
-                    }
-                    else {
-                        currentDigit2Screen1--;
-                        if (currentDigit2Screen1 == 0) {
-                            currentDigit1Screen1--;
-                            if (currentDigit1Screen1 > 0)
-                                currentDigit2Screen1 = 10;
-                            else
-                                currentDigit2Screen1 = 2;
-                        }
-                    }
-                }
-            }
-        }
-        if (currentDigit1Screen1 > currentDigit1Screen2)
-            currentSymbol = 2;
-        else if (currentDigit1Screen1 < currentDigit1Screen2)
-            currentSymbol = 0;
-        else {
-            if (currentDigit2Screen1 == currentDigit2Screen2)
-				currentSymbol = 1;
-            else if (currentDigit2Screen1 > currentDigit2Screen2)
-                currentSymbol = 2;
-            else
-				currentSymbol = 0;
-        }
+		check_symbol();
     
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE and upPressed) {
             glfwSetCursor(window, remote);

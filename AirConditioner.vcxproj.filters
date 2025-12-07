@@ -45,6 +45,9 @@
     <ClCompile Include="Source\Circle\Lamp.cpp">
       <Filter>Source Files\Circle</Filter>
     </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\stb_image.h">
@@ -65,9 +68,10 @@
     <ClInclude Include="Header\Circle\Lamp.h">
       <Filter>Header Files\Circle</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="Header\Geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
