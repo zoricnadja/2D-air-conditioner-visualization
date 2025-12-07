@@ -26,7 +26,7 @@ float uLampPower = 0.0f;
 bool isFlapMoving = false;
 //wanted temp
 int currentDigit1Screen1 = 3;
-int currentDigit2Screen1 = 4;
+int currentDigit2Screen1 = 5;
 //current temp
 int currentDigit1Screen2 = 4;
 int currentDigit2Screen2 = 1;
@@ -255,7 +255,7 @@ int main()
                             currentDigit2Screen1 = 1;
                             currentDigit1Screen1 = 1;
                         }
-                    } 
+                    }
                     else {
                         currentDigit2Screen1++;
                         if (currentDigit2Screen1 == 11) {
@@ -269,7 +269,7 @@ int main()
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS and !downPressed) {
             glfwSetCursor(window, remoteDownPressed);
             downPressed = true;
-            
+
             if (uLampPower == 1.0f) {
                 if (currentDigit1Screen1 != 0 || currentDigit2Screen1 != 10) {
                     if (currentDigit1Screen1 < 1) {
@@ -278,20 +278,33 @@ int main()
                             currentDigit2Screen1 = 10;
                             currentDigit1Screen1 = 0;
                         }
-					}
+                    }
                     else {
                         currentDigit2Screen1--;
                         if (currentDigit2Screen1 == 0) {
                             currentDigit1Screen1--;
-							if (currentDigit1Screen1 > 0)
+                            if (currentDigit1Screen1 > 0)
                                 currentDigit2Screen1 = 10;
                             else
-								currentDigit2Screen1 = 2;
+                                currentDigit2Screen1 = 2;
                         }
                     }
                 }
-			}
+            }
         }
+        if (currentDigit1Screen1 > currentDigit1Screen2)
+            currentSymbol = 2;
+        else if (currentDigit1Screen1 < currentDigit1Screen2)
+            currentSymbol = 0;
+        else {
+            if (currentDigit2Screen1 == currentDigit2Screen2)
+				currentSymbol = 1;
+            else if (currentDigit2Screen1 > currentDigit2Screen2)
+                currentSymbol = 2;
+            else
+				currentSymbol = 0;
+        }
+    
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE and upPressed) {
             glfwSetCursor(window, remote);
             upPressed = false;
