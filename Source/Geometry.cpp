@@ -115,10 +115,16 @@ void initLampVertices(float xc, float yc, float r)
     }
 }
 
-
 float waterVertices[] = {
    -0.915f, -0.485f, 0.0f, 1.0f,
    -0.91f,  -0.62f, 0.0f, 0.0f,
    -0.54f,  -0.62f, 1.0f, 0.0f,
    -0.535f, -0.485f, 1.0f, 1.0f
+};
+
+float nameVertices[] = {
+    0.75f,  0.98f, 0.0f, 1.0f,
+    0.75f,  0.85f, 0.0f, 0.0f,
+    0.98f,  0.85f, 1.0f, 0.0f,
+    0.98f,  0.98f, 1.0f, 1.0f
 };

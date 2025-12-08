@@ -120,6 +120,7 @@
     <None Include="Shaders\rect.vert">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="glsl Shaders\rect.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\remote.png">
@@ -201,6 +202,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\name.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

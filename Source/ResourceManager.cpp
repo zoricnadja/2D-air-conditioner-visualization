@@ -37,9 +37,12 @@ bool ResourceManager::LoadAll(const GLFWvidmode* mode) {
     initRectangles(mode->width, mode->height, screen2degreeVertices, sizeof(screen2degreeVertices), resources_.screen2degreeVAO, resources_.screen2degreeVBO);
     initRectangles(mode->width, mode->height, screen2celsiusVertices, sizeof(screen2celsiusVertices), resources_.screen2celsiusVAO, resources_.screen2celsiusVBO);
     initRectangles(mode->width, mode->height, screen3Vertices, sizeof(screen3Vertices), resources_.screen3VAO, resources_.screen3VBO);
-	initRectangles(mode->width, mode->height, waterVertices, sizeof(waterVertices), resources_.waterVAO, resources_.waterVBO);
+    initRectangles(mode->width, mode->height, waterVertices, sizeof(waterVertices), resources_.waterVAO, resources_.waterVBO);
 
     initCircle(lampVertices, sizeof(lampVertices), resources_.lampVAO, resources_.lampVBO);
+
+    // initialize name overlay rectangle
+    initRectangles(mode->width, mode->height, nameVertices, sizeof(nameVertices), resources_.nameVAO, resources_.nameVBO);
 
     // textures
     resources_.bgTexture = loadTexture("Resources/background.png"); if (!checkTextureLoaded(resources_.bgTexture, "Resources/background.png")) return false;
@@ -51,7 +54,8 @@ bool ResourceManager::LoadAll(const GLFWvidmode* mode) {
     resources_.degreeTexture = loadTexture("Resources/degree.png"); if (!checkTextureLoaded(resources_.degreeTexture, "Resources/degree.png")) return false;
     resources_.celsiusTexture = loadTexture("Resources/celsius.png"); if (!checkTextureLoaded(resources_.celsiusTexture, "Resources/celsius.png")) return false;
     resources_.waterTexture = loadTexture("Resources/water.png"); if (!checkTextureLoaded(resources_.waterTexture, "Resources/water.png")) return false;
-    
+	resources_.nameTexture = loadTexture("Resources/name.png"); if (!checkTextureLoaded(resources_.nameTexture, "Resources/name.png")) return false;
+
     // number textures
     resources_.numberTextures[0] = loadTexture("Resources/minus.png"); if (!checkTextureLoaded(resources_.numberTextures[0], "Resources/minus.png")) return false;
     resources_.numberTextures[1] = loadTexture("Resources/0.png"); if (!checkTextureLoaded(resources_.numberTextures[1], "Resources/0.png")) return false;
@@ -105,6 +109,7 @@ void ResourceManager::ReleaseAll() {
     if (resources_.screen3VAO) { glDeleteVertexArrays(1, &resources_.screen3VAO); glDeleteBuffers(1, &resources_.screen3VBO); resources_.screen3VAO = 0; }
     if (resources_.lampVAO) { glDeleteVertexArrays(1, &resources_.lampVAO); glDeleteBuffers(1, &resources_.lampVBO); resources_.lampVAO = 0; }
     if (resources_.waterVAO) { glDeleteVertexArrays(1, &resources_.waterVAO); glDeleteBuffers(1, &resources_.waterVBO); resources_.waterVAO = 0; }
+    if (resources_.nameVAO) { glDeleteVertexArrays(1, &resources_.nameVAO); glDeleteBuffers(1, &resources_.nameVBO); resources_.nameVAO = 0; }
 
     if (resources_.bgTexture) { glDeleteTextures(1, &resources_.bgTexture); resources_.bgTexture = 0; }
     if (resources_.acTexture) { glDeleteTextures(1, &resources_.acTexture); resources_.acTexture = 0; }
@@ -115,6 +120,7 @@ void ResourceManager::ReleaseAll() {
     if (resources_.degreeTexture) { glDeleteTextures(1, &resources_.degreeTexture); resources_.degreeTexture = 0; }
     if (resources_.celsiusTexture) { glDeleteTextures(1, &resources_.celsiusTexture); resources_.celsiusTexture = 0; }
     if (resources_.waterTexture) { glDeleteTextures(1, &resources_.waterTexture); resources_.waterTexture = 0; }
+    if (resources_.nameTexture) { glDeleteTextures(1, &resources_.nameTexture); resources_.nameTexture = 0; }
 
     for (auto &t : resources_.numberTextures) { if (t) { glDeleteTextures(1, &t); t = 0; } }
     for (auto &t : resources_.symbolTextures) { if (t) { glDeleteTextures(1, &t); t = 0; } }

@@ -154,6 +154,7 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="glsl Shaders\rect.frag" />
     <None Include="Shaders\circle.frag" />
     <None Include="Shaders\circle.vert" />
     <None Include="Shaders\rect.frag" />
@@ -183,6 +184,7 @@
     <Image Include="Resources\flap.jpeg" />
     <Image Include="Resources\light_grey.jpg" />
     <Image Include="Resources\minus.png" />
+    <Image Include="Resources\name.png" />
     <Image Include="Resources\remote.png" />
     <Image Include="Resources\remote_down_pressed.png" />
     <Image Include="Resources\remote_power_pressed.png" />

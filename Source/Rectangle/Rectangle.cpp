@@ -33,13 +33,14 @@ unsigned int loadTexture(const char* path) {
 	return texture;
 }
 
-void drawRectangles(unsigned int shader, unsigned int texture, unsigned int& vao) {
+void drawRectangles(unsigned int shader, unsigned int texture, unsigned int& vao, float alpha = 1.0f) {
 	glUseProgram(shader);
 
 	glUniform1f(glGetUniformLocation(shader, "uFill"), fill);
 	glUniform1f(glGetUniformLocation(shader, "uUseFill"), useFill);
 	glUniform1f(glGetUniformLocation(shader, "uWaterLevel"), waterLevel);
 	glUniform1f(glGetUniformLocation(shader, "uUseWaterLevel"), useWaterLevel);
+	glUniform1f(glGetUniformLocation(shader, "uAlpha"), alpha);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);

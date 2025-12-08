@@ -16,9 +16,10 @@ void Renderer::RenderFrame(GLFWwindow* /*window*/) {
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(R.rectShader);
 
-    // draw background + AC
     useFill = false;
-	useWaterLevel = false;
+    useWaterLevel = false;
+
+    // draw background + AC
     drawRectangles(R.rectShader, R.bgTexture, R.bgVAO);
     drawRectangles(R.rectShader, R.acTexture, R.acVAO);
 
@@ -42,6 +43,10 @@ void Renderer::RenderFrame(GLFWwindow* /*window*/) {
 
     drawRectangleOutline(R.rectShader, R.darkGreyTexture ? R.darkGreyTexture : R.bgTexture, R.waterVAO);
 
+    // draw semi-transparent name overlay (alpha 0.6)
+    drawRectangles(R.rectShader, R.nameTexture, R.nameVAO, 0.6f);
+
+	// draw flap and water
     useFill = true;
     drawRectangles(R.rectShader, R.flapTexture, R.flapVAO);
 	useFill = false;

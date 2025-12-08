@@ -19,6 +19,7 @@ extern float screen2celsiusVertices[16];
 
 extern float screen3Vertices[16];
 extern float waterVertices[16];
+extern float nameVertices[16];
 
 extern float lampVertices[NUM_OF_SLICES];
 

@@ -8,10 +8,13 @@ uniform float uFill;
 uniform bool uUseFill;
 uniform float uWaterLevel;
 uniform bool uUseWaterLevel;
+uniform float uAlpha;
 
 void main()
 {
     if((chTex.y > uFill && uUseFill) || (chTex.y > uWaterLevel && uUseWaterLevel))
         discard;
-    outCol = texture(uTex, chTex);
+    vec4 tex = texture(uTex, chTex);
+    tex.a *= uAlpha;
+    outCol = tex;
 } 

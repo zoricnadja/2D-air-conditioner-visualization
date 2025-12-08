@@ -39,6 +39,9 @@ struct ResourceHandles {
 
     unsigned int waterTexture = 0;
 
+    unsigned int nameVAO = 0, nameVBO = 0;
+    unsigned int nameTexture = 0;
+
     std::array<unsigned int, NUM_OF_DIGITS> numberTextures{};
     std::array<unsigned int, NUM_OF_SYMBOLS> symbolTextures{};
 };
