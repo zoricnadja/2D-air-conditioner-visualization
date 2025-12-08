@@ -128,10 +128,9 @@
     <ClCompile Include="Source\Geometry.cpp" />
     <ClCompile Include="Source\Globals.cpp" />
     <ClCompile Include="Source\Application.cpp" />
-    <ClCompile Include="Source\Circle\Lamp.cpp" />
+    <ClCompile Include="Source\Lamp.cpp" />
     <ClCompile Include="Source\Input.cpp" />
-    <ClCompile Include="Source\Rectangle\Rectangle.cpp" />
-    <ClCompile Include="Source\Rectangle\Background.cpp" />
+    <ClCompile Include="Source\Rectangle.cpp" />
     <ClCompile Include="Source\Callbacks.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
@@ -143,7 +142,6 @@
     <ClInclude Include="Header\Application.h" />
     <ClInclude Include="Header\Geometry.h" />
     <ClInclude Include="Header\Circle\Lamp.h" />
-    <ClInclude Include="Header\Rectangle\Background.h" />
     <ClInclude Include="Header\Callbacks.h" />
     <ClInclude Include="Header\Renderer.h" />
     <ClInclude Include="Header\ResourceManager.h" />
@@ -154,7 +152,6 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="glsl Shaders\rect.frag" />
     <None Include="Shaders\circle.frag" />
     <None Include="Shaders\circle.vert" />
     <None Include="Shaders\rect.frag" />

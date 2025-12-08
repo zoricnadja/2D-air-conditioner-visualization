@@ -1,4 +1,4 @@
-#include "../../Header/Circle/Lamp.h"
+#include "../../Header/Lamp.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 

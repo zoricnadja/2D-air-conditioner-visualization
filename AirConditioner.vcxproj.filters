@@ -13,18 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Rectangle">
-      <UniqueIdentifier>{c54bb9aa-7b1b-4b0d-a87c-7646987a9319}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Circle">
-      <UniqueIdentifier>{19cd415e-36b7-4708-b9e2-62116020d77b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Rectangle">
-      <UniqueIdentifier>{88251359-fb63-4fff-9cb8-460ef65a1bcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Circle">
-      <UniqueIdentifier>{8d35c35b-f00b-4b3c-a1c6-092ca45f9e8a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -32,15 +20,6 @@
     </ClCompile>
     <ClCompile Include="Source\Util.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rectangle\Background.cpp">
-      <Filter>Source Files\Rectangle</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rectangle\Rectangle.cpp">
-      <Filter>Source Files\Rectangle</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Circle\Lamp.cpp">
-      <Filter>Source Files\Circle</Filter>
     </ClCompile>
     <ClCompile Include="Source\Geometry.cpp">
       <Filter>Source Files</Filter>
@@ -64,7 +43,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Callbacks.cpp">
-      <Filter>Source Files\Circle</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lamp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rectangle.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,15 +61,6 @@
     </ClInclude>
     <ClInclude Include="Header\Callbacks.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Rectangle\Background.h">
-      <Filter>Header Files\Rectangle</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Rectangle\Rectangle.h">
-      <Filter>Header Files\Rectangle</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Circle\Lamp.h">
-      <Filter>Header Files\Circle</Filter>
     </ClInclude>
     <ClInclude Include="Header\Geometry.h">
       <Filter>Header Files</Filter>
@@ -105,6 +81,12 @@
     <ClInclude Include="Header\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Circle\Lamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Rectangle\Rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -120,7 +102,6 @@
     <None Include="Shaders\rect.vert">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="glsl Shaders\rect.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\remote.png">

@@ -1,8 +1,8 @@
 #include "../Header/ResourceManager.h"
 #include "../Header/Geometry.h"
 #include "../Header/Util.h"
-#include "../Header/Rectangle/Rectangle.h"
-#include "../Header/Circle/Lamp.h"
+#include "../Header/Rectangle.h"
+#include "../Header/Lamp.h"
 #include "../Header/Globals.h"
 
 #include <iostream>

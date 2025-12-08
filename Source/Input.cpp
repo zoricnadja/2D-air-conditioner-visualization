@@ -1,7 +1,7 @@
 #include "../../Header/Input.h"
 #include "../../Header/Globals.h"
 #include <GLFW/glfw3.h>
-#include "../Header/Rectangle/Rectangle.h"
+#include "../Header/Rectangle.h"
 #include <cstdio> // at top of file (for fprintf)
 
 void CheckSymbol() {

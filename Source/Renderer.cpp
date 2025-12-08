@@ -1,6 +1,6 @@
 #include "../Header/Renderer.h"
-#include "../Header/Rectangle/Rectangle.h"
-#include "../Header/Circle/Lamp.h"
+#include "../Header/Rectangle.h"
+#include "../Header/Lamp.h"
 #include "../Header/Globals.h"
 
 #include <GL/glew.h>
