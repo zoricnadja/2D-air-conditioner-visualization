@@ -89,18 +89,27 @@ void Application::Run()
             } else {
                 // advance or retract flap smoothly
                 fill += (uLampPower == 1.0f) ? 0.001f : -0.001f;
-                if (fill < 0.0f) fill = 0.0f;
-                if (fill > 1.0f) fill = 1.0f;
+				if (fill < 0.0f || fill > 1.0f) isFlapMoving = false;
             }
         }
 
-        if (uLampPower == 1.0f) {
-			waterLevel += 0.0005f;
-            if (waterLevel >= 1.0f) {
-                uLampPower = 0.0f;
-				isFlapMoving = true;
+        if (uLampPower == 1.0f and !isFlapMoving) {
+			//waterLevel += 0.0005f;
+            
+            static double lastFillUpdate = 0.0;
+            double now = glfwGetTime();
+            if (lastFillUpdate == 0.0) lastFillUpdate = now;
+            if (now - lastFillUpdate >= 1.0) {
+                lastFillUpdate = now;
+                const float step = 0.05f; // tune speed
+                waterLevel += step;
+                if (waterLevel >= 1.0f) {
+                    uLampPower = 0.0f;
+                    isFlapMoving = true;
+                }
             }
         }
+
 
         // input
         ProcessInput(window_);

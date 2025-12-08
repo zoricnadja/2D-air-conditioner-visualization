@@ -11,3 +11,4 @@ void initRectangles(int width, int height, float* vertices, size_t size, unsigne
 unsigned int loadTexture(const char* path);
 void drawRectangles(unsigned int shader, unsigned int texture, unsigned int& vao);
 void deleteRectangles(unsigned int& vao, unsigned int& vbo, unsigned int texture); 
+void drawRectangleOutline(unsigned int shader, unsigned int texture, unsigned int& vao);

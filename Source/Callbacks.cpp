@@ -22,11 +22,12 @@ void center_callback(GLFWwindow* window, int button, int action, int mods)
 	if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
 		glfwSetCursor(window, remotePowerPressed);
 		if (inside) {
-			if (uLampPower != 1.0f || waterLevel != 1.0f) {
+			if (waterLevel < 1.0f) {
 				uLampPower = (uLampPower < 1.0f) ? 1.0f : 0.0f;
 				//useFill = true;
 				isFlapMoving = true;
 				//useWaterLevel = true;
+				printf("Power button pressed. water: %.1f\n", waterLevel);
 			}
 		}
 	} 

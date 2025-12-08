@@ -46,6 +46,27 @@ void drawRectangles(unsigned int shader, unsigned int texture, unsigned int& vao
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
+void drawRectangleOutline(unsigned int shader, unsigned int texture, unsigned int& vao) {
+	// Use same shader/uniforms as filled rectangles.
+	glUseProgram(shader);
+
+	// Make sure we don't accidentally apply fill clipping to the border
+	glUniform1f(glGetUniformLocation(shader, "uFill"), fill);
+	glUniform1f(glGetUniformLocation(shader, "uUseFill"), 0.0f);
+
+	// Bind a texture to satisfy the shader's sampler (can be a plain 1x1 color texture)
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	// Draw the rectangle outline using the same vertex layout (4 vertices)
+	glBindVertexArray(vao);
+	glLineWidth(3.0f); // thickness of the border, tweak as needed
+	glDrawArrays(GL_LINE_LOOP, 0, 4);
+
+	// restore line width to default (optional)
+	glLineWidth(1.0f);
+}
+
 void deleteRectangles(unsigned int& vao, unsigned int& vbo, unsigned int texture) {
 	glDeleteVertexArrays(1, &vao);
 	glDeleteBuffers(1, &vbo);
