@@ -14,7 +14,6 @@ public:
     // initialize window, GL, resources
     bool Init();
 
-    // run main loop (blocks until window close)
     void Run();
 
     // cleanup resources
@@ -23,6 +22,5 @@ public:
 private:
     GLFWwindow* window_;
 
-    // renderer instance used by the application
     Renderer renderer_;
 };

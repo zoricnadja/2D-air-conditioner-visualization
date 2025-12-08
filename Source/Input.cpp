@@ -2,7 +2,6 @@
 #include "../../Header/Globals.h"
 #include <GLFW/glfw3.h>
 #include "../Header/Rectangle.h"
-#include <cstdio> // at top of file (for fprintf)
 
 void CheckSymbol() {
     if (isHot()) currentSymbol = 0;

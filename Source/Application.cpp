@@ -63,10 +63,8 @@ bool Application::Init()
         return false;
     }
 
-    // renderer
     renderer_.SetResources(rm);
 
-    // store resource manager pointer on window for Shutdown to find it
     glfwSetWindowUserPointer(window_, rm);
 	glfwSetMouseButtonCallback(window_, center_callback);
     return true;
@@ -109,6 +107,7 @@ void Application::Run()
             }
         }
 
+		// temperature update
         if (!isFlapMoving && uLampPower >= 1.0f){
             if (isCold()) {
                 static double lastFillUpdate = 0.0;
@@ -139,7 +138,6 @@ void Application::Run()
         // render
         renderer_.RenderFrame(window_);
 
-        // swap / poll
         glfwSwapBuffers(window_);
         glfwPollEvents();
 
@@ -152,7 +150,6 @@ void Application::Shutdown()
 {
     if (!window_) return;
 
-    // free resources
     ResourceManager* rm = static_cast<ResourceManager*>(glfwGetWindowUserPointer(window_));
     if (rm) {
         rm->ReleaseAll();

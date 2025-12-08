@@ -141,7 +141,7 @@
     <ClInclude Include="Header\Globals.h" />
     <ClInclude Include="Header\Application.h" />
     <ClInclude Include="Header\Geometry.h" />
-    <ClInclude Include="Header\Circle\Lamp.h" />
+    <ClInclude Include="Header\Lamp.h" />
     <ClInclude Include="Header\Callbacks.h" />
     <ClInclude Include="Header\Renderer.h" />
     <ClInclude Include="Header\ResourceManager.h" />

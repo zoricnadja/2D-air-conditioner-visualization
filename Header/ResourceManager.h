@@ -2,7 +2,7 @@
 #include <array>
 #include <GL/glew.h>
 #include <cstddef>
-#include <GLFW/glfw3.h> // needed for GLFWvidmode in LoadAll signature
+#include <GLFW/glfw3.h> 
 
 constexpr int NUM_OF_DIGITS = 11;
 constexpr int NUM_OF_SYMBOLS = 3;
@@ -57,7 +57,6 @@ public:
     // Access loaded handles
     ResourceHandles& Get() { return resources_; }
 
-    // Free GL resources
     void ReleaseAll();
 
 private:

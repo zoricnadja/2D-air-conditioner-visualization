@@ -7,10 +7,8 @@ public:
     Renderer() = default;
     ~Renderer() = default;
 
-    // attach resource manager (must be loaded)
     void SetResources(ResourceManager* rm);
 
-    // render one frame
     void RenderFrame(GLFWwindow* window);
 
 private:

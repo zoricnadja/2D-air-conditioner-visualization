@@ -81,7 +81,7 @@
     <ClInclude Include="Header\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Circle\Lamp.h">
+    <ClInclude Include="Header\Lamp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\Rectangle\Rectangle.h">
