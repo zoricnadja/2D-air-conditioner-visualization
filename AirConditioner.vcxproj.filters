@@ -33,9 +33,6 @@
     <ClCompile Include="Source\Util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Callbacks.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rectangle\Background.cpp">
       <Filter>Source Files\Rectangle</Filter>
     </ClCompile>
@@ -65,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="Source\Input.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Callbacks.cpp">
+      <Filter>Source Files\Circle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

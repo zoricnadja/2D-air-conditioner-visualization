@@ -1,6 +1,7 @@
 #include "../../Header/Input.h"
 #include "../../Header/Globals.h"
 #include <GLFW/glfw3.h>
+#include "../Header/Rectangle/Rectangle.h"
 
 void CheckSymbol() {
     int wanted_temp = currentDigit1Screen1 * 10 + currentDigit2Screen1;
@@ -83,7 +84,9 @@ void ProcessInput(GLFWwindow* window) {
         downPressed = false;
     }
 
-
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+		waterLevel = 0.0f;
+    }
 
     CheckSymbol();
 }

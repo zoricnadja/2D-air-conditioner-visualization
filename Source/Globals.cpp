@@ -8,6 +8,7 @@ GLFWcursor* remotePowerPressed = nullptr;
 bool upPressed = false;
 bool downPressed = false;
 bool isFlapMoving = false;
+bool isWaterMoving = false;
 
 float xc = -0.53f;
 float yc = 0.59f;
