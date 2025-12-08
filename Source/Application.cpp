@@ -94,6 +94,11 @@ void Application::Run()
             }
         }
 
+        if (uLampPower == 1.0f) {
+			waterLevel += 0.005f;
+			if (waterLevel >= 1.0f) uLampPower = 0.0f;
+        }
+
         // input
         ProcessInput(window_);
 

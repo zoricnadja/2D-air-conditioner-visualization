@@ -22,6 +22,7 @@ struct ResourceHandles {
     unsigned int screen2num2VAO = 0, screen2num2VBO = 0;
     unsigned int screen2degreeVAO = 0, screen2degreeVBO = 0;
     unsigned int screen2celsiusVAO = 0, screen2celsiusVBO = 0;
+    unsigned int waterVAO = 0, waterVBO = 0;
     unsigned int lampVAO = 0, lampVBO = 0;
 
     unsigned int rectShader = 0;
@@ -35,6 +36,8 @@ struct ResourceHandles {
     unsigned int darkGreyTexture = 0;
     unsigned int degreeTexture = 0;
     unsigned int celsiusTexture = 0;
+
+    unsigned int waterTexture = 0;
 
     std::array<unsigned int, NUM_OF_DIGITS> numberTextures{};
     std::array<unsigned int, NUM_OF_SYMBOLS> symbolTextures{};

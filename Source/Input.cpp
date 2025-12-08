@@ -66,6 +66,7 @@ void ProcessInput(GLFWwindow* window) {
         upPressed = true;
         IncreaseTemperature();
     }
+
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS && !downPressed) {
         if (remoteDownPressed) glfwSetCursor(window, remoteDownPressed);
         downPressed = true;
@@ -76,10 +77,13 @@ void ProcessInput(GLFWwindow* window) {
         if (remote) glfwSetCursor(window, remote);
         upPressed = false;
     }
+
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_RELEASE && downPressed) {
         if (remote) glfwSetCursor(window, remote);
         downPressed = false;
     }
+
+
 
     CheckSymbol();
 }

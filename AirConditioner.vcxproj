@@ -187,6 +187,7 @@
     <Image Include="Resources\remote_down_pressed.png" />
     <Image Include="Resources\remote_power_pressed.png" />
     <Image Include="Resources\remote_up_pressed.png" />
+    <Image Include="Resources\water.png" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AirConditioner.rc" />

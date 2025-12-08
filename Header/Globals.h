@@ -16,7 +16,6 @@ extern float r;
 
 extern float uLampPower;
 
-// UI / display state
 extern int currentDigit1Screen1;
 extern int currentDigit2Screen1;
 extern int currentDigit1Screen2;

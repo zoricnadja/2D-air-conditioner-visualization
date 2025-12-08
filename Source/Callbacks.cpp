@@ -22,9 +22,12 @@ void center_callback(GLFWwindow* window, int button, int action, int mods)
 	if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
 		glfwSetCursor(window, remotePowerPressed);
 		if (inside) {
-			uLampPower = (uLampPower < 1.0f) ? 1.0f : 0.0f;
-			useFill = true;
-			isFlapMoving = true;
+			if (uLampPower != 1.0f || waterLevel != 1.0f) {
+				uLampPower = (uLampPower < 1.0f) ? 1.0f : 0.0f;
+				//useFill = true;
+				isFlapMoving = true;
+				//useWaterLevel = true;
+			}
 		}
 	} 
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {

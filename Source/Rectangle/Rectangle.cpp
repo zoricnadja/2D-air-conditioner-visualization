@@ -6,6 +6,8 @@
 
 float fill = 0.0f;
 bool useFill = false;
+float waterLevel = 0.0f;
+bool useWaterLevel = false;
 
 void initRectangles(int width, int height, float* vertices, size_t size, unsigned int& vao, unsigned int& vbo)
 {
@@ -36,6 +38,8 @@ void drawRectangles(unsigned int shader, unsigned int texture, unsigned int& vao
 
 	glUniform1f(glGetUniformLocation(shader, "uFill"), fill);
 	glUniform1f(glGetUniformLocation(shader, "uUseFill"), useFill);
+	glUniform1f(glGetUniformLocation(shader, "uWaterLevel"), waterLevel);
+	glUniform1f(glGetUniformLocation(shader, "uUseWaterLevel"), useWaterLevel);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);

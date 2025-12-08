@@ -18,8 +18,34 @@ void Renderer::RenderFrame(GLFWwindow* /*window*/) {
 
     // draw background + AC
     useFill = false;
+	useWaterLevel = false;
     drawRectangles(R.rectShader, R.bgTexture, R.bgVAO);
     drawRectangles(R.rectShader, R.acTexture, R.acVAO);
+
+    //// --- water basin: increment 'fill' once per second and draw a semi-transparent blue rect ---
+    //{
+    //    // update fill (you might already do this elsewhere). Example: discrete +1 step per second
+    //    // (ensure glfw time is available in your loop)
+    //    static double lastFillUpdate = 0.0;
+    //    double now = glfwGetTime();
+    //    if (lastFillUpdate == 0.0) lastFillUpdate = now;
+    //    if (now - lastFillUpdate >= 1.0) {
+    //        lastFillUpdate = now;
+    //        const float step = 0.05f; // tune speed
+    //        fill += step;
+    //        if (fill > 1.0f) fill = 1.0f;
+    //    }
+
+    //    // debug: print texture + VAO
+    //    fprintf(stderr, "waterTexture=%u waterVAO=%u fill=%.3f useFill=%d\n", R.waterTexture, R.waterVAO, fill, (int)useFill);
+
+    //    // draw water basin (enable blending for semi-transparent water)
+    //    glEnable(GL_BLEND);
+    //    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //    useFill = true; // rect.frag will use uFill + uUseFill to clip
+    //    useFill = false;
+    //    glDisable(GL_BLEND);
+    //}
 
     if (uLampPower == 1.0f) {
         drawRectangles(R.rectShader, R.lightGreyTexture, R.screen1VAO);
@@ -41,6 +67,9 @@ void Renderer::RenderFrame(GLFWwindow* /*window*/) {
 
     useFill = true;
     drawRectangles(R.rectShader, R.flapTexture, R.flapVAO);
+	useFill = false;
+	useWaterLevel = true;
+    drawRectangles(R.rectShader, R.waterTexture, R.waterVAO);
 
     // circle
     drawCircle(R.circleShader, R.lampVAO);
