@@ -8,10 +8,6 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "../Header/stb_image.h"
 
-// Autor: Nedeljko Tesanovic
-// Opis: pomocne funkcije za zaustavljanje programa, ucitavanje sejdera, tekstura i kursora
-// Smeju se koristiti tokom izrade projekta
-
 int endProgram(std::string message) {
     std::cout << message << std::endl;
     glfwTerminate();
@@ -20,8 +16,6 @@ int endProgram(std::string message) {
 
 unsigned int compileShader(GLenum type, const char* source)
 {
-    //Uzima kod u fajlu na putanji "source", kompajlira ga i vraca sejder tipa "type"
-    //Citanje izvornog koda iz fajla
     std::string content = "";
     std::ifstream file(source);
     std::stringstream ss;
@@ -29,66 +23,63 @@ unsigned int compileShader(GLenum type, const char* source)
     {
         ss << file.rdbuf();
         file.close();
-        std::cout << "Uspjesno procitao fajl sa putanje \"" << source << "\"!" << std::endl;
+        std::cout << "Successfully read the file from the path \"" << source << "\"!" << std::endl;
     }
     else {
         ss << "";
-        std::cout << "Greska pri citanju fajla sa putanje \"" << source << "\"!" << std::endl;
+        std::cout << "Error while reading the file from the path \"" << source << "\"!" << std::endl;
     }
     std::string temp = ss.str();
-    const char* sourceCode = temp.c_str(); //Izvorni kod sejdera koji citamo iz fajla na putanji "source"
+    const char* sourceCode = temp.c_str(); 
 
-    int shader = glCreateShader(type); //Napravimo prazan sejder odredjenog tipa (vertex ili fragment)
+    int shader = glCreateShader(type); 
 
-    int success; //Da li je kompajliranje bilo uspjesno (1 - da)
-    char infoLog[512]; //Poruka o gresci (Objasnjava sta je puklo unutar sejdera)
-    glShaderSource(shader, 1, &sourceCode, NULL); //Postavi izvorni kod sejdera
-    glCompileShader(shader); //Kompajliraj sejder
+    int success;
+    char infoLog[512]; 
+    glShaderSource(shader, 1, &sourceCode, NULL);
+    glCompileShader(shader); 
 
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success); //Provjeri da li je sejder uspjesno kompajliran
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
     if (success == GL_FALSE)
     {
-        glGetShaderInfoLog(shader, 512, NULL, infoLog); //Pribavi poruku o gresci
+        glGetShaderInfoLog(shader, 512, NULL, infoLog); 
         if (type == GL_VERTEX_SHADER)
-            printf("VERTEX");
+            printf("Vertex");
         else if (type == GL_FRAGMENT_SHADER)
-            printf("FRAGMENT");
-        printf(" sejder ima gresku! Greska: \n");
+            printf("Fragment");
+        printf(" shader has an error! Error: \n");
         printf(infoLog);
     }
     return shader;
 }
 unsigned int createShader(const char* vsSource, const char* fsSource)
 {
-    //Pravi objedinjeni sejder program koji se sastoji od Vertex sejdera ciji je kod na putanji vsSource
 
-    unsigned int program; //Objedinjeni sejder
-    unsigned int vertexShader; //Verteks sejder (za prostorne podatke)
-    unsigned int fragmentShader; //Fragment sejder (za boje, teksture itd)
+    unsigned int program; 
+    unsigned int vertexShader; 
+    unsigned int fragmentShader; 
 
-    program = glCreateProgram(); //Napravi prazan objedinjeni sejder program
+    program = glCreateProgram(); 
 
-    vertexShader = compileShader(GL_VERTEX_SHADER, vsSource); //Napravi i kompajliraj vertex sejder
-    fragmentShader = compileShader(GL_FRAGMENT_SHADER, fsSource); //Napravi i kompajliraj fragment sejder
+    vertexShader = compileShader(GL_VERTEX_SHADER, vsSource); 
+    fragmentShader = compileShader(GL_FRAGMENT_SHADER, fsSource); 
 
-    //Zakaci verteks i fragment sejdere za objedinjeni program
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragmentShader);
 
-    glLinkProgram(program); //Povezi ih u jedan objedinjeni sejder program
-    glValidateProgram(program); //Izvrsi provjeru novopecenog programa
+    glLinkProgram(program); 
+    glValidateProgram(program); 
 
     int success;
     char infoLog[512];
-    glGetProgramiv(program, GL_VALIDATE_STATUS, &success); //Slicno kao za sejdere
+    glGetProgramiv(program, GL_VALIDATE_STATUS, &success); 
     if (success == GL_FALSE)
     {
         glGetShaderInfoLog(program, 512, NULL, infoLog);
-        std::cout << "Objedinjeni sejder ima gresku! Greska: \n";
+        std::cout << "Shader program compilation failed! Error: \n";
         std::cout << infoLog << std::endl;
     }
 
-    //Posto su kodovi sejdera u objedinjenom sejderu, oni pojedinacni programi nam ne trebaju, pa ih brisemo zarad ustede na memoriji
     glDetachShader(program, vertexShader);
     glDeleteShader(vertexShader);
     glDetachShader(program, fragmentShader);
@@ -104,10 +95,8 @@ unsigned loadImageToTexture(const char* filePath) {
     unsigned char* ImageData = stbi_load(filePath, &TextureWidth, &TextureHeight, &TextureChannels, 0);
     if (ImageData != NULL)
     {
-        //Slike se osnovno ucitavaju naopako pa se moraju ispraviti da budu uspravne
         stbi__vertical_flip(ImageData, TextureWidth, TextureHeight, TextureChannels);
 
-        // Provjerava koji je format boja ucitane slike
         GLint InternalFormat = -1;
         switch (TextureChannels) {
         case 1: InternalFormat = GL_RED; break;
@@ -122,13 +111,12 @@ unsigned loadImageToTexture(const char* filePath) {
         glBindTexture(GL_TEXTURE_2D, Texture);
         glTexImage2D(GL_TEXTURE_2D, 0, InternalFormat, TextureWidth, TextureHeight, 0, InternalFormat, GL_UNSIGNED_BYTE, ImageData);
         glBindTexture(GL_TEXTURE_2D, 0);
-        // oslobadjanje memorije zauzete sa stbi_load posto vise nije potrebna
         stbi_image_free(ImageData);
         return Texture;
     }
     else
     {
-        std::cout << "Textura nije ucitana! Putanja texture: " << filePath << std::endl;
+        std::cout << "Texture not loaded! Texture path: " << filePath << std::endl;
         stbi_image_free(ImageData);
         return 0;
     }
@@ -148,8 +136,6 @@ GLFWcursor* loadImageToCursor(const char* filePath) {
         image.height = TextureHeight;
         image.pixels = ImageData;
 
-        // Tacka na površini slike kursora koja se ponaša kao hitboks, moze se menjati po potrebi
-        // Trenutno je gornji levi ugao, odnosno na 20% visine i 20% sirine slike kursora
         int hotspotX = TextureWidth / 5;
         int hotspotY = TextureHeight / 5;
 
@@ -158,7 +144,7 @@ GLFWcursor* loadImageToCursor(const char* filePath) {
         return cursor;
     }
     else {
-        std::cout << "Kursor nije ucitan! Putanja kursora: " << filePath << std::endl;
+        std::cout << "Cursor not loaded! Cursor path: " << filePath << std::endl;
         stbi_image_free(ImageData);
 
     }

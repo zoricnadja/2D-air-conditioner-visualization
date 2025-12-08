@@ -22,8 +22,9 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{6eecf44a-001f-42a3-91f3-62168f9e8c1d}</ProjectGuid>
-    <RootNamespace>Kostur</RootNamespace>
+    <RootNamespace>AirConditioner</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>AirConditioner</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -124,21 +125,71 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Geometry.cpp" />
+    <ClCompile Include="Source\Globals.cpp" />
+    <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Lamp.cpp" />
+    <ClCompile Include="Source\Input.cpp" />
+    <ClCompile Include="Source\Rectangle.cpp" />
+    <ClCompile Include="Source\Callbacks.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Renderer.cpp" />
+    <ClCompile Include="Source\ResourceManager.cpp" />
     <ClCompile Include="Source\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Globals.h" />
+    <ClInclude Include="Header\Application.h" />
+    <ClInclude Include="Header\Geometry.h" />
+    <ClInclude Include="Header\Lamp.h" />
+    <ClInclude Include="Header\Callbacks.h" />
+    <ClInclude Include="Header\Renderer.h" />
+    <ClInclude Include="Header\ResourceManager.h" />
     <ClInclude Include="Header\stb_image.h" />
     <ClInclude Include="Header\Util.h" />
+    <ClInclude Include="Header\Rectangle\Rectangle.h" />
+    <ClInclude Include="Header\Input.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\circle.frag" />
+    <None Include="Shaders\circle.vert" />
+    <None Include="Shaders\rect.frag" />
+    <None Include="Shaders\rect.vert" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\..\..\Downloads\remote.png.png" />
-    <Image Include="..\..\..\..\..\..\..\Downloads\remote_down_pressed.png.png" />
-    <Image Include="..\..\..\..\..\..\..\Downloads\remote_power_pressed.png.png" />
-    <Image Include="..\..\..\..\..\..\..\Downloads\remote_upp_pressed.png.png" />
+    <Image Include="Resources\0.png" />
+    <Image Include="Resources\1.png" />
+    <Image Include="Resources\2.png" />
+    <Image Include="Resources\3.png" />
+    <Image Include="Resources\4.png" />
+    <Image Include="Resources\5.png" />
+    <Image Include="Resources\6.png" />
+    <Image Include="Resources\7.png" />
+    <Image Include="Resources\8.png" />
+    <Image Include="Resources\9.png" />
+    <Image Include="Resources\air_conditioner.png" />
+    <Image Include="Resources\air_vent_grill.png" />
+    <Image Include="Resources\background.png" />
+    <Image Include="Resources\celsius.png" />
+    <Image Include="Resources\dark_grey.png" />
+    <Image Include="Resources\degree.png" />
+    <Image Include="Resources\done.png" />
+    <Image Include="Resources\fire.png" />
+    <Image Include="Resources\flake.png" />
+    <Image Include="Resources\flap.jpeg" />
+    <Image Include="Resources\light_grey.jpg" />
+    <Image Include="Resources\minus.png" />
+    <Image Include="Resources\name.png" />
+    <Image Include="Resources\remote.png" />
+    <Image Include="Resources\remote_down_pressed.png" />
+    <Image Include="Resources\remote_power_pressed.png" />
+    <Image Include="Resources\remote_up_pressed.png" />
+    <Image Include="Resources\water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AirConditioner.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

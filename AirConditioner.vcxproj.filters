@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Callbacks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lamp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Callbacks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Geometry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Header\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Lamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Rectangle\Rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Shaders\circle.frag">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Shaders\circle.vert">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Shaders\rect.frag">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Shaders\rect.vert">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\remote.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\remote_down_pressed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\remote_power_pressed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\remote_up_pressed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\air_conditioner.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\flap.jpeg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\air_vent_grill.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\9.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\8.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\7.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\celsius.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\degree.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\dark_grey.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\light_grey.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\fire.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\flake.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\done.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\minus.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\name.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AirConditioner.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
