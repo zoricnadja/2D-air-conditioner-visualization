@@ -81,35 +81,57 @@ void Application::Run()
     while (!glfwWindowShouldClose(window_)) {
         double t0 = glfwGetTime();
 
-        // flap movement update (restored)
+        // flap movement update 
         if (isFlapMoving) {
-            // stop condition: flap reached end matching lamp power state
             if ((fill == 0.0f && uLampPower == 0.0f) || (fill == 1.0f && uLampPower == 1.0f)) {
                 isFlapMoving = false;
             } else {
-                // advance or retract flap smoothly
                 fill += (uLampPower == 1.0f) ? 0.001f : -0.001f;
 				if (fill < 0.0f || fill > 1.0f) isFlapMoving = false;
             }
         }
 
+        //water level update
         if (uLampPower == 1.0f and !isFlapMoving) {
-			//waterLevel += 0.0005f;
-            
             static double lastFillUpdate = 0.0;
             double now = glfwGetTime();
             if (lastFillUpdate == 0.0) lastFillUpdate = now;
             if (now - lastFillUpdate >= 1.0) {
                 lastFillUpdate = now;
-                const float step = 0.05f; // tune speed
+                const float step = 0.05f; 
                 waterLevel += step;
                 if (waterLevel >= 1.0f) {
                     uLampPower = 0.0f;
                     isFlapMoving = true;
+					currentDigit1Screen1 = 3;
+                    currentDigit2Screen1 = 5;
                 }
             }
         }
 
+        if (!isFlapMoving && uLampPower >= 1.0f){
+            if (isCold()) {
+                static double lastFillUpdate = 0.0;
+                double now = glfwGetTime();
+                if (lastFillUpdate == 0.0) lastFillUpdate = now;
+                if (now - lastFillUpdate >= 2.0) {
+                    lastFillUpdate = now;
+                    IncreaseTemperature(currentDigit1Screen2, currentDigit2Screen2);
+                    CheckSymbol();
+                }
+            }
+
+            if (isHot()) {
+                static double lastFillUpdate = 0.0;
+                double now = glfwGetTime();
+                if (lastFillUpdate == 0.0) lastFillUpdate = now;
+                if (now - lastFillUpdate >= 2.0) {
+                    lastFillUpdate = now;
+                    LowerTemperature(currentDigit1Screen2, currentDigit2Screen2);
+                    CheckSymbol();
+                }
+            }
+        }
 
         // input
         ProcessInput(window_);

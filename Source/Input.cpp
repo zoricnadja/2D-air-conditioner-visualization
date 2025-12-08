@@ -2,52 +2,63 @@
 #include "../../Header/Globals.h"
 #include <GLFW/glfw3.h>
 #include "../Header/Rectangle/Rectangle.h"
+#include <cstdio> // at top of file (for fprintf)
 
 void CheckSymbol() {
-    int wanted_temp = currentDigit1Screen1 * 10 + currentDigit2Screen1;
-    int current_temp = currentDigit1Screen2 * 10 + currentDigit2Screen2;
-    if (wanted_temp < current_temp) currentSymbol = 0;
-    else if (wanted_temp > current_temp) currentSymbol = 2;
+    if (isHot()) currentSymbol = 0;
+    else if (isCold()) currentSymbol = 2;
     else currentSymbol = 1;
 }
 
-void IncreaseTemperature() {
+bool isCold() {
+    int wanted_temp = currentDigit1Screen1 * 10 + currentDigit2Screen1;
+    int current_temp = currentDigit1Screen2 * 10 + currentDigit2Screen2;
+    return wanted_temp > current_temp;
+}
+
+bool isHot() {
+    int wanted_temp = currentDigit1Screen1 * 10 + currentDigit2Screen1;
+    int current_temp = currentDigit1Screen2 * 10 + currentDigit2Screen2;
+    return wanted_temp < current_temp;
+}
+
+void IncreaseTemperature(int& digit1, int& digit2) {
     if (uLampPower == 1.0f) {
-        if (currentDigit1Screen1 != 4 || currentDigit2Screen1 != 10) {
-            if (currentDigit1Screen1 < 1) {
-                currentDigit2Screen1--;
-                if (currentDigit2Screen1 == 1) {
-                    currentDigit2Screen1 = 1;
-                    currentDigit1Screen1 = 1;
+        if (digit1 != 4 || digit2 != 10) {
+            if (digit1 < 1) {
+                digit2--;
+                if (digit2 == 1) {
+                    digit2 = 1;
+                    digit1 = 1;
                 }
             } else {
-                currentDigit2Screen1++;
-                if (currentDigit2Screen1 == 11) {
-                    currentDigit2Screen1 = 1;
-                    currentDigit1Screen1++;
+                digit2++;
+                if (digit2 == 11) {
+                    digit2 = 1;
+                    digit1++;
                 }
             }
         }
     }
 }
 
-void LowerTemperature() {
+void LowerTemperature(int& digit1, int& digit2) {
     if (uLampPower == 1.0f) {
-        if (currentDigit1Screen1 != 0 || currentDigit2Screen1 != 10) {
-            if (currentDigit1Screen1 < 1) {
-                currentDigit2Screen1++;
-                if (currentDigit2Screen1 == 11) {
-                    currentDigit2Screen1 = 10;
-                    currentDigit1Screen1 = 0;
+        if (digit1 != 0 || digit2 != 10) {
+            if (digit1 < 1) {
+                digit2++;
+                if (digit2 == 11) {
+                    digit2 = 10;
+                    digit1 = 0;
                 }
             } else {
-                currentDigit2Screen1--;
-                if (currentDigit2Screen1 == 0) {
-                    currentDigit1Screen1--;
-                    if (currentDigit1Screen1 > 0)
-                        currentDigit2Screen1 = 10;
+                digit2--;
+                if (digit2 == 0) {
+                    digit1--;
+                    if (digit1 > 0)
+                        digit2 = 10;
                     else
-                        currentDigit2Screen1 = 2;
+                        digit2 = 2;
                 }
             }
         }
@@ -65,13 +76,13 @@ void ProcessInput(GLFWwindow* window) {
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS && !upPressed) {
         if (remoteUpPressed) glfwSetCursor(window, remoteUpPressed);
         upPressed = true;
-        IncreaseTemperature();
+        IncreaseTemperature(currentDigit1Screen1, currentDigit2Screen1);
     }
 
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS && !downPressed) {
         if (remoteDownPressed) glfwSetCursor(window, remoteDownPressed);
         downPressed = true;
-        LowerTemperature();
+        LowerTemperature(currentDigit1Screen1, currentDigit2Screen1);
     }
 
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE && upPressed) {

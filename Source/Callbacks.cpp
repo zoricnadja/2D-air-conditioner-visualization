@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "../Header/Util.h"
+#include "../Header/Globals.h"
 
 void center_callback(GLFWwindow* window, int button, int action, int mods)
 {
@@ -21,14 +22,16 @@ void center_callback(GLFWwindow* window, int button, int action, int mods)
 
 	if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
 		glfwSetCursor(window, remotePowerPressed);
-		if (inside) {
-			if (waterLevel < 1.0f) {
-				uLampPower = (uLampPower < 1.0f) ? 1.0f : 0.0f;
-				//useFill = true;
-				isFlapMoving = true;
-				//useWaterLevel = true;
-				printf("Power button pressed. water: %.1f\n", waterLevel);
+		if (inside && waterLevel < 1.0f) {
+			if (uLampPower == 1.0f) {
+				currentDigit1Screen1 = 3;
+				currentDigit2Screen1 = 5;
+				uLampPower = 0.0f;
 			}
+			else {
+				uLampPower = 1.0f;
+			}
+			isFlapMoving = true;
 		}
 	} 
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
